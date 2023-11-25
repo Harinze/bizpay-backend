@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const industryTypes = ['Food and Beverages', 'Technology', 'Agriculture', 'Education'];
-const businessSchema = new mongoose_1.default.Schema({
+const userSchema = new mongoose_1.default.Schema({
     fullName: {
         type: String,
         required: true
@@ -41,5 +41,5 @@ const businessSchema = new mongoose_1.default.Schema({
         unique: true
     }
 });
-const Business = mongoose_1.default.model('Business', businessSchema);
-exports.default = Business;
+const UserProfileModel = mongoose_1.default.model('UserProfileModel', userSchema);
+exports.default = UserProfileModel;

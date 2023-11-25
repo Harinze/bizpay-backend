@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const industryTypes = ['Food and Beverages', 'Technology', 'Agriculture', 'Education'];
 
-const businessSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   fullName: {
     type: String,
     required: true
@@ -39,6 +39,6 @@ const businessSchema = new mongoose.Schema({
   }
 });
 
-const Business = mongoose.model('Business', businessSchema);
+const UserProfileModel = mongoose.model('UserProfileModel', userSchema);
 
-export default Business;
+export default UserProfileModel;
