@@ -1,11 +1,28 @@
 import mongoose from 'mongoose';
 
+export interface IUserProfile extends Document {
+  id:string,
+  fullName: string;
+  email: string;
+  businessName: string;
+  businessNumber: string;
+  industryType: string;
+  phoneNumber: string;
+  address: string;
+  uniqueId: string;
+  // ... other fields
+}
+
 const industryTypes = ['Food and Beverages', 'Technology', 'Agriculture', 'Education'];
 
 const userSchema = new mongoose.Schema({
   fullName: {
     type: String,
     required: true
+  },
+  id: {
+    type: String,
+    required: false
   },
   email: {
     type: String,
@@ -26,7 +43,7 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   phoneNumber: {
-    type: String,
+    type: Number,
     required: true
   },
   address: {
@@ -39,6 +56,5 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-const UserProfileModel = mongoose.model('UserProfileModel', userSchema);
-
+const UserProfileModel = mongoose.model<IUserProfile>('UserProfile', userSchema);
 export default UserProfileModel;

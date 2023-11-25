@@ -1,6 +1,7 @@
-// src/controllers/userProfileController.ts
+
 import { Request, Response, NextFunction } from 'express';
-import UserProfileModel  from '../model/user';
+import UserProfileModel, { IUserProfile }  from '../model/user';
+import { generateToken } from '../helperFunctions';
 
 export const checkExistingUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -28,12 +29,23 @@ export const checkExistingUser = async (req: Request, res: Response, next: NextF
 
 export const createUserProfile = async (req: Request, res: Response) => {
   try {
-    const userProfile = new UserProfileModel(req.body);
+    const userProfileData: IUserProfile = req.body;
+    const userProfile = new UserProfileModel(userProfileData);
+
     const savedProfile = await userProfile.save();
-    res.status(200).json({
-        message:`Profile was created successfully`,
-        data:savedProfile
-    });
+
+    if (savedProfile) {
+      const token = generateToken(savedProfile.uniqueId,savedProfile.email);
+
+      res.status(200).send({
+        message:`profile for ${savedProfile.businessName} has been created`,
+        data: { userProfile: savedProfile, token },
+      });
+      res.cookie('userId', savedProfile._id, { httpOnly: true, secure: true });
+
+    } else {
+      res.status(500).json({ error: 'Error generating token' });
+    }
   } catch (error) {
     console.error('Error creating user profile:', error);
     res.status(500).json({ error: 'Error creating user profile' });

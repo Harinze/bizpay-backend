@@ -19,6 +19,7 @@ app.use(bodyParser.json()); // Parse JSON requests
 // });
 
 app.use('/user-profile', userProfileRoutes);
+app.use('/login', userProfileRoutes )
 
 // Start the server
 app.listen(port, () => {
