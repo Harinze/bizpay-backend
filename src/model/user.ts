@@ -10,7 +10,6 @@ export interface IUserProfile extends Document {
   phoneNumber: string;
   address: string;
   uniqueId: string;
-  // ... other fields
 }
 
 const industryTypes = ['Food and Beverages', 'Technology', 'Agriculture', 'Education'];

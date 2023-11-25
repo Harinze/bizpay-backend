@@ -39,7 +39,7 @@ export const createUserProfile = async (req: Request, res: Response) => {
 
       res.status(200).send({
         message:`profile for ${savedProfile.businessName} has been created`,
-        data: { userProfile: savedProfile, token },
+        data: savedProfile, token
       });
       res.cookie('userId', savedProfile._id, { httpOnly: true, secure: true });
 

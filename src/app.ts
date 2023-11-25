@@ -9,19 +9,13 @@ connectDB()
 const app = express();
 const port = process.env.PORT;
 
-// Middleware
-app.use(cors()); // Enable CORS for all routes
-app.use(bodyParser.json()); // Parse JSON requests
+app.use(cors());
+app.use(bodyParser.json());
 
-// // Routes
-// app.get('/', (_req, res) => {
-//   res.send('Hello, World!');
-// });
 
 app.use('/user-profile', userProfileRoutes);
 app.use('/login', userProfileRoutes )
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
