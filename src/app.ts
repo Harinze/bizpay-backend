@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import "dotenv/config"
-import connectDB from './db/db';
+import {connectDB} from './db/db';
 import userProfileRoutes from './middleware/index';
 
 connectDB()
