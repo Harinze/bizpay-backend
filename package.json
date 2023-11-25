@@ -1,8 +1,9 @@
 {
   "name": "bizpay-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Hackerthon app",
+  "main": "app.js",
+  "type":"commonjs",
   "engines": {
     "node": ">=16"
   },
