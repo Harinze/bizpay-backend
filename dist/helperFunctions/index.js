@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 require("dotenv/config");
-const generateToken = (email, uniqueId) => {
-    return jsonwebtoken_1.default.sign({ email, uniqueId }, `${process.env.APP_SECRET}`, { expiresIn: '7d' });
+const generateToken = (userId) => {
+    return jsonwebtoken_1.default.sign({ userId }, `${process.env.APP_SECRET}`, { expiresIn: '7d' });
 };
 exports.generateToken = generateToken;

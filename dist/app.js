@@ -14,8 +14,9 @@ const app = (0, express_1.default)();
 const port = process.env.PORT;
 app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
-app.use('/user-profile', index_1.default);
+app.use('/signup', index_1.default);
 app.use('/login', index_1.default);
+app.use('/createclientprofile', index_1.default);
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

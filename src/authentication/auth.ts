@@ -1,4 +1,3 @@
-// src/middleware/authMiddleware.ts
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config'
@@ -17,10 +16,10 @@ const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
       return res.status(401).json({ error: 'Unauthorized - Invalid Authorization header format.' });
     }
 
-    const decoded = jwt.verify(token, process.env.APP_SECRET as string) as { uniqueId: string };
+    const decoded = jwt.verify(token, process.env.APP_SECRET as string) as { userId: string };
 
-    req.body.uniqueId = decoded.uniqueId;
-    res.cookie('userId', decoded.uniqueId, { httpOnly: true, secure: true });
+    req.body.userId = decoded.userId;
+    res.cookie('userId', decoded.userId, { httpOnly: true, secure: true });
 
     next();
   } catch (error) {

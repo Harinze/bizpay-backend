@@ -1,11 +1,11 @@
 import express from 'express';
-import { createUserProfile, checkExistingUser } from '../controllers/user';
-import { loginUser } from '../controllers/auth';
+import { userLogin, userSignup,createClientProfile  } from '../controllers/user';
 import authenticateToken from '../authentication/auth';
 
 const router = express.Router();
 
-router.post('/create-profile', checkExistingUser, createUserProfile);
-router.post('/login', authenticateToken, loginUser);
+router.post('/createclient', authenticateToken, createClientProfile);
+router.post('/login', userLogin);
+router.post('/signup', userSignup)
 
 export default router;

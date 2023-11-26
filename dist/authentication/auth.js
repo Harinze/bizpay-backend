@@ -16,8 +16,8 @@ const authenticateToken = (req, res, next) => {
             return res.status(401).json({ error: 'Unauthorized - Invalid Authorization header format.' });
         }
         const decoded = jsonwebtoken_1.default.verify(token, process.env.APP_SECRET);
-        req.body.uniqueId = decoded.uniqueId;
-        res.cookie('userId', decoded.uniqueId, { httpOnly: true, secure: true });
+        req.body.userId = decoded.userId;
+        res.cookie('userId', decoded.userId, { httpOnly: true, secure: true });
         next();
     }
     catch (error) {

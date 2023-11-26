@@ -13,8 +13,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-app.use('/user-profile', userProfileRoutes);
+app.use('/signup', userProfileRoutes);
 app.use('/login', userProfileRoutes )
+app.use('/createclientprofile', userProfileRoutes )
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

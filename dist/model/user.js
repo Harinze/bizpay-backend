@@ -4,15 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
-const industryTypes = ['Food and Beverages', 'Technology', 'Agriculture', 'Education'];
 const userSchema = new mongoose_1.default.Schema({
     fullName: {
         type: String,
         required: true
-    },
-    id: {
-        type: String,
-        required: false
     },
     email: {
         type: String,
@@ -21,16 +16,11 @@ const userSchema = new mongoose_1.default.Schema({
     },
     businessName: {
         type: String,
-        required: true
+        required: false
     },
-    businessNumber: {
+    descriptionOfBusiness: {
         type: String,
-        required: true
-    },
-    industryType: {
-        type: String,
-        enum: industryTypes,
-        required: true
+        required: false
     },
     phoneNumber: {
         type: Number,
@@ -38,12 +28,16 @@ const userSchema = new mongoose_1.default.Schema({
     },
     address: {
         type: String,
+        required: false
+    },
+    password: {
+        type: String,
         required: true
     },
-    uniqueId: {
+    image: {
         type: String,
-        unique: true
+        required: false
     }
-});
+}, { timestamps: true });
 const UserProfileModel = mongoose_1.default.model('UserProfile', userSchema);
 exports.default = UserProfileModel;

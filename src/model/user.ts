@@ -1,27 +1,25 @@
 import mongoose from 'mongoose';
 
 export interface IUserProfile extends Document {
-  id:string,
+  _id:string,
   fullName: string;
   email: string;
   businessName: string;
-  businessNumber: string;
-  industryType: string;
+  descriptionOfBusiness: string;
   phoneNumber: string;
   address: string;
-  uniqueId: string;
+  password: string;
+  image: string
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-const industryTypes = ['Food and Beverages', 'Technology', 'Agriculture', 'Education'];
 
 const userSchema = new mongoose.Schema({
+
   fullName: {
     type: String,
     required: true
-  },
-  id: {
-    type: String,
-    required: false
   },
   email: {
     type: String,
@@ -30,16 +28,11 @@ const userSchema = new mongoose.Schema({
   },
   businessName: {
     type: String,
-    required: true
+    required: false
   },
-  businessNumber: {
+  descriptionOfBusiness: {
     type: String,
-    required: true
-  },
-  industryType: {
-    type: String,
-    enum: industryTypes,
-    required: true
+    required: false
   },
   phoneNumber: {
     type: Number,
@@ -47,13 +40,18 @@ const userSchema = new mongoose.Schema({
   },
   address: {
     type: String,
+    required: false
+  },
+   password: {
+    type: String,
     required: true
   },
-  uniqueId: {
+   image: {
     type: String,
-    unique: true
+    required: false
   }
-});
+},
+{timestamps: true});
 
 const UserProfileModel = mongoose.model<IUserProfile>('UserProfile', userSchema);
 export default UserProfileModel;
