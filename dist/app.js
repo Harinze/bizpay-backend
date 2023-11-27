@@ -17,7 +17,7 @@ app.use(body_parser_1.default.json());
 app.use('/signup', index_1.default);
 app.use('/login', index_1.default);
 app.use('/createclientprofile', index_1.default);
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
     res.send(`
     <!DOCTYPE html>
     <html lang="en">

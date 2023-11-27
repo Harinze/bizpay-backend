@@ -17,7 +17,7 @@ app.use('/signup', userProfileRoutes);
 app.use('/login', userProfileRoutes )
 app.use('/createclientprofile', userProfileRoutes )
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.send(`
     <!DOCTYPE html>
     <html lang="en">
