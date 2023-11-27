@@ -3,7 +3,9 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import "dotenv/config"
 import {connectDB} from './db/db';
-import userProfileRoutes from './middleware/index';
+import userLoginRoute from './middleware/index';
+import userSignupRoute from './middleware/index';
+import userCreateProfileRoute from './middleware/index';
 
 connectDB()
 const app = express();
@@ -13,9 +15,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-app.use('/signup', userProfileRoutes);
-app.use('/login', userProfileRoutes )
-app.use('/createclientprofile', userProfileRoutes )
+app.use('/', userLoginRoute);
+app.use('/', userSignupRoute )
+app.use('/', userCreateProfileRoute )
 
 app.get('/', (_req, res) => {
   res.send(`
