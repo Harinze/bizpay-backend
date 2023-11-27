@@ -18,5 +18,5 @@ app.use('/signup', index_1.default);
 app.use('/login', index_1.default);
 app.use('/createclientprofile', index_1.default);
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server is Ok`);
 });
