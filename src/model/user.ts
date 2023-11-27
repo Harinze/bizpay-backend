@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export interface IUserProfile extends Document {
+export interface UserProfile extends Document {
   _id:string,
   fullName: string;
   email: string;
@@ -23,8 +23,7 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   businessName: {
     type: String,
@@ -53,5 +52,5 @@ const userSchema = new mongoose.Schema({
 },
 {timestamps: true});
 
-const UserProfileModel = mongoose.model<IUserProfile>('UserProfile', userSchema);
+const UserProfileModel = mongoose.model<UserProfile>('UserProfile', userSchema);
 export default UserProfileModel;

@@ -24,9 +24,9 @@ interface ClientProfile extends Document {
 
 const ClientProfileSchema: Schema = new Schema({
   fullName: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  email: { type: String, required: true},
   businessName: { type: String, required: true },
-  businessNumber: { type: String, required: true, unique: true },
+  businessNumber: { type: String, required: true},
   address: { type: String, required: true },
   phoneNumber: {type: Number, required: true},
   uniqueId: { type: String, required: true},

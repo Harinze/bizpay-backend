@@ -18,8 +18,7 @@ const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
     }
     
     const decoded = decodeToken(token)
-   // const decoded = jwt.verify(token, process.env.APP_SECRET as string) as { userId: string };
-
+    
     req.body.userId = decoded.userId;
     res.cookie('userId', decoded.userId, { httpOnly: true, secure: true });
 
