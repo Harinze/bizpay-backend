@@ -16,7 +16,6 @@ export const userLogin = async (req: Request, res: Response) => {
     const lowercasedEmail = email.toLowerCase();
 
     const user = await UserProfileModel.findOne({ email: lowercasedEmail, phoneNumber });
-  console.log("user",user)
     if (!user) {
       return res.status(404).json({ message: 'User not found or invalid credentials.' });
     }
