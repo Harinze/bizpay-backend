@@ -1,38 +1,24 @@
-
 import { Request, Response } from 'express';
 import UserProfileModel from '../model/user';
 import { generateToken } from '../helperFunctions';
 import bcrypt from 'bcrypt'; 
 import ClientProfileModel from '../model/client';
 
+
 export const userLogin = async (req: Request, res: Response) => {
   try {
     const { email, password, phoneNumber } = req.body;
 
-    if (!email) {
-      return res.status(400).json({ message: 'Email is required.' });
-    }
-
-    if (!phoneNumber) {
-      return res.status(400).json({ message: 'Phone number is required' });
-    }
-
-    if (!password) {
-      return res.status(400).json({ message: 'Password is required' });
+    if (!email || !phoneNumber || !password) {
+      return res.status(400).json({ message: 'Email, phone number, and password are required.' });
     }
 
     const lowercasedEmail = email.toLowerCase();
 
-    const user = await UserProfileModel.findOne({ email: lowercasedEmail });
-
+    const user = await UserProfileModel.findOne({ email: lowercasedEmail, phoneNumber });
+  console.log("user",user)
     if (!user) {
-      return res.status(404).json({ message: 'User not found.' });
-    }
-
-    const userPhoneNumber = await UserProfileModel.findOne({ phoneNumber });
-
-    if (!userPhoneNumber) {
-      return res.status(404).json({ message: 'Phone number is not found!' });
+      return res.status(404).json({ message: 'User not found or invalid credentials.' });
     }
 
     const passwordMatch = await bcrypt.compare(password, user.password);
@@ -43,12 +29,16 @@ export const userLogin = async (req: Request, res: Response) => {
 
     const token = generateToken(user._id);
 
-    res.json({ token, userId: user._id, message:`You have logged in...` });
+    res.json({ token, userId: user._id, message: 'You have logged in...' });
   } catch (error) {
     console.error('Error during user login:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+
+
+
 
 export const userSignup = async (req: Request, res: Response) => {
   try {

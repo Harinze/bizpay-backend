@@ -17,33 +17,60 @@ const user_1 = __importDefault(require("../model/user"));
 const helperFunctions_1 = require("../helperFunctions");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const client_1 = __importDefault(require("../model/client"));
+// export const userLogin = async (req: Request, res: Response) => {
+//   try {
+//     const { email, password, phoneNumber } = req.body;
+//     if (!email) {
+//       return res.status(400).json({ message: 'Email is required.' });
+//     }
+//     if (!phoneNumber) {
+//       return res.status(400).json({ message: 'Phone number is required' });
+//     }
+//     if (!password) {
+//       return res.status(400).json({ message: 'Password is required' });
+//     }
+//     const lowercasedEmail = email.toLowerCase();
+//     const user = await UserProfileModel.findOne({ email: lowercasedEmail });
+//     if (!user) {
+//       return res.status(404).json({ message: 'User not found.' });
+//     }
+//     const userPhoneNumber = await UserProfileModel.findOne({ phoneNumber });
+//     if (!userPhoneNumber) {
+//       return res.status(404).json({ message: 'Phone number is not found!' });
+//     }
+//     const passwordMatch = await bcrypt.compare(password, user.password);
+//     if (!passwordMatch) {
+//       return res.status(401).json({ message: 'Invalid credentials.' });
+//     }
+//     const token = generateToken(user._id);
+//     res.json({ token, userId: user._id, message:`You have logged in...` });
+//   } catch (error) {
+//     console.error('Error during user login:', error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// };
+// import { Request, Response } from 'express';
+// import UserProfileModel from 'your-user-profile-model'; // Import your user profile model
+// import bcrypt from 'bcrypt';
+// import { generateToken } from 'your-token-generator'; // Import your token generator function
 const userLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password, phoneNumber } = req.body;
-        if (!email) {
-            return res.status(400).json({ message: 'Email is required.' });
-        }
-        if (!phoneNumber) {
-            return res.status(400).json({ message: 'Phone number is required' });
-        }
-        if (!password) {
-            return res.status(400).json({ message: 'Password is required' });
+        if (!email || !phoneNumber || !password) {
+            return res.status(400).json({ message: 'Email, phone number, and password are required.' });
         }
         const lowercasedEmail = email.toLowerCase();
-        const user = yield user_1.default.findOne({ email: lowercasedEmail });
+        const user = yield user_1.default.findOne({ email: lowercasedEmail, phoneNumber });
+        console.log("user", user);
         if (!user) {
-            return res.status(404).json({ message: 'User not found.' });
-        }
-        const userPhoneNumber = yield user_1.default.findOne({ phoneNumber });
-        if (!userPhoneNumber) {
-            return res.status(404).json({ message: 'Phone number is not found!' });
+            return res.status(404).json({ message: 'User not found or invalid credentials.' });
         }
         const passwordMatch = yield bcrypt_1.default.compare(password, user.password);
         if (!passwordMatch) {
             return res.status(401).json({ message: 'Invalid credentials.' });
         }
         const token = (0, helperFunctions_1.generateToken)(user._id);
-        res.json({ token, userId: user._id, message: `You have logged in...` });
+        res.json({ token, userId: user._id, message: 'You have logged in...' });
     }
     catch (error) {
         console.error('Error during user login:', error);
