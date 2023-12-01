@@ -1,19 +1,18 @@
 import request from 'supertest';
 import app from '../app'; 
-import chai from 'chai'; 
-import chaiHttp from 'chai-http';
+import chai from 'chai';
+import chaiHttp from 'chai-http'; 
 
 chai.use(chaiHttp);
 const expect = chai.expect;
+chai.use(chaiHttp);
+
 describe('Login Endpoint', () => {
-  beforeEach(() => {
-    jest.setTimeout(10000); 
-  });
 
   it('should return 200 with valid credentials', async () => {
     const response = await request(app)
       .post('/login')
-      .send({ email: 'kibe474@gmail.com', phoneNumber:'07039270533', password: 'Password1$' });
+      .send({ email: 'kibe474@gmail.com', phoneNumber:'1234567890', password: 'Password1$' });
 
     expect(response.status).to.equal(200);
     expect(response.body.message).to.equal('You have logged in...');
@@ -37,5 +36,4 @@ describe('Login Endpoint', () => {
     expect(response.body.message).to.equal('Email, phone number, and password are required.');
   });
 });
-
 

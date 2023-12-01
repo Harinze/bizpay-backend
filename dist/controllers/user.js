@@ -17,6 +17,8 @@ const user_1 = __importDefault(require("../model/user"));
 const helperFunctions_1 = require("../helperFunctions");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const client_1 = __importDefault(require("../model/client"));
+const mongoose_1 = __importDefault(require("mongoose"));
+mongoose_1.default.set('maxTimeMS', 60000);
 const userLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password, phoneNumber } = req.body;

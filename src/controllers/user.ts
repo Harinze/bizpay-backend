@@ -3,6 +3,9 @@ import UserProfileModel from '../model/user';
 import { generateToken } from '../helperFunctions';
 import bcrypt from 'bcrypt'; 
 import ClientProfileModel from '../model/client';
+import mongoose from 'mongoose';
+
+mongoose.set('maxTimeMS', 60000)
 
 
 export const userLogin = async (req: Request, res: Response) => {

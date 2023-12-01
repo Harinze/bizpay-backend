@@ -18,14 +18,12 @@ const chai_1 = __importDefault(require("chai"));
 const chai_http_1 = __importDefault(require("chai-http"));
 chai_1.default.use(chai_http_1.default);
 const expect = chai_1.default.expect;
+chai_1.default.use(chai_http_1.default);
 describe('Login Endpoint', () => {
-    beforeEach(() => {
-        jest.setTimeout(10000);
-    });
     it('should return 200 with valid credentials', () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield (0, supertest_1.default)(app_1.default)
             .post('/login')
-            .send({ email: 'kibe474@gmail.com', phoneNumber: '07039270533', password: 'Password1$' });
+            .send({ email: 'kibe474@gmail.com', phoneNumber: '1234567890', password: 'Password1$' });
         expect(response.status).to.equal(200);
         expect(response.body.message).to.equal('You have logged in...');
     }));
