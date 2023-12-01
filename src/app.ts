@@ -22,3 +22,5 @@ app.use('/', userCreateProfileRoute )
 app.listen(port, () => {
   console.log(`Server is Ok`);
 });
+
+export default app;

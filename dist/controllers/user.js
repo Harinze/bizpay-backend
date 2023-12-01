@@ -33,7 +33,7 @@ const userLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return res.status(401).json({ message: 'Invalid credentials.' });
         }
         const token = (0, helperFunctions_1.generateToken)(user._id);
-        res.json({ token, userId: user._id, message: 'You have logged in...' });
+        res.status(200).json({ token, userId: user._id, message: 'You have logged in...' });
     }
     catch (error) {
         console.error('Error during user login:', error);

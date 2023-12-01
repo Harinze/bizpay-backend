@@ -22,3 +22,4 @@ app.use('/', index_3.default);
 app.listen(port, () => {
     console.log(`Server is Ok`);
 });
+exports.default = app;
