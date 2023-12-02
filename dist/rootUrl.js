@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.renderHomePage = void 0;
-const utils_1 = require("../src/utils/utils");
+const utils_1 = require("./utils/utils");
 const renderHomePage = () => {
     return `
     <div class="${(0, utils_1.generateStyles)('bg-green-500', 'text-white', 'p-8', 'text-center', 'font-sans')}">

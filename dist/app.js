@@ -11,8 +11,6 @@ const db_1 = require("./db/db");
 const index_1 = __importDefault(require("./middleware/index"));
 const index_2 = __importDefault(require("./middleware/index"));
 const index_3 = __importDefault(require("./middleware/index"));
-const rootUrl_1 = require("./rootUrl");
-require("tailwindcss/dist/base.css");
 (0, db_1.connectDB)();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
@@ -22,7 +20,7 @@ app.use('/', index_1.default);
 app.use('/', index_2.default);
 app.use('/', index_3.default);
 app.get('/', (_req, res) => {
-    res.send((0, rootUrl_1.renderHomePage)());
+    res.send('Backend is up and running!');
 });
 app.listen(port, () => {
     console.log(`Server is Ok`);
