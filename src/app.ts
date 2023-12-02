@@ -7,6 +7,7 @@ import userLoginRoute from './middleware/index';
 import userSignupRoute from './middleware/index';
 import userCreateProfileRoute from './middleware/index';
 import { renderHomePage } from './rootUrl';
+import 'tailwindcss/dist/base.css'
 
 connectDB()
 const app = express();
