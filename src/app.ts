@@ -6,6 +6,7 @@ import {connectDB} from './db/db';
 import userLoginRoute from './middleware/index';
 import userSignupRoute from './middleware/index';
 import userCreateProfileRoute from './middleware/index';
+import { renderHomePage } from './rootUrl';
 
 connectDB()
 const app = express();
@@ -20,7 +21,7 @@ app.use('/', userSignupRoute )
 app.use('/', userCreateProfileRoute )
 
 app.get('/', (_req, res) => {
-  res.send('Hello, World!');
+  res.send(renderHomePage());
 });
 
 app.listen(port, () => {
