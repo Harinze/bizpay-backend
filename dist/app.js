@@ -19,6 +19,9 @@ app.use(body_parser_1.default.json());
 app.use('/', index_1.default);
 app.use('/', index_2.default);
 app.use('/', index_3.default);
+app.get('/', (_req, res) => {
+    res.send('Hello, World!');
+});
 app.listen(port, () => {
     console.log(`Server is Ok`);
 });
